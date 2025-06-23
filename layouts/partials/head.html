@@ -1,3 +1,7 @@
 {{ with site.Params.assets.umamiWebsiteId }}
-<script defer src="https://cloud.umami.is/script.js" data-website-id="d1f72a89-bede-4cb3-a1be-edf59177d826"></script>
+  <script
+    defer
+    src="{{ site.Params.assets.umamiScriptUrl }}"
+    data-website-id="{{ . }}"
+  ></script>
 {{ end }}
