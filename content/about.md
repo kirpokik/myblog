@@ -16,8 +16,6 @@ I write about whatever sparks my curiosity — it could be anything from retro g
 If you’d like to get in touch — whether you have questions about my projects or just want to chat about ideas — feel free to email me at [contact@ksorok.in](mailto:contact@ksorok.in).
 I'm always open to new connections, especially those that can help bring creative projects to life.
 
-.> I currently live in France, originally from Ukraine, and I’m raising a multilingual family while juggling side projects and real life.
-
 This blog is part lab notebook, part personal diary. I use it to stay accountable, reflect on progress, and hopefully help others who are walking a similar path.
 
 My long-term goal is to launch several useful micro-products, starting from simple MVPs. Some of them might become startups, others just fun experiments.
