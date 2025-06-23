@@ -6,6 +6,7 @@ tags: ["django", "framework", "project", "mvp", "web development"]
 categories: ["build-log", "project-journal"]
 category: "Dev Journey"
 type: post
+comments: true
 
 ---
 
@@ -50,7 +51,7 @@ Django, the high-level Python web framework, offers:
 | Learning Curve          | 🟢         | 🔵                    | 🟡      | 🟡    | 🟢 (for non-devs)|
 | Best Use Case           | MVPs, Startups | SPAs, Dashboards  | Backends | CRUD apps | Landing Pages   |
 
-> ✅ = included or very easy to set up  
+> ✅ = included or very easy to set up
 > ⚡️ = fast, 🪄 = no-code speed, 🟢 = easy, 🔵 = intermediate, 🟡 = harder
 
 ---

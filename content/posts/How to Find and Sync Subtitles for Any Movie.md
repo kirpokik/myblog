@@ -7,6 +7,7 @@ categories: ["Blog"]
 category: "Blog"
 ShowToc: true
 showBreadcrumbs: true
+comments: true
 ---
 
 In a continuation of my [earlier post](/posts/how-movies-help-my-daughter-learn-french/) about how watching movies and cartoons in French helps my child improve their language skills, I ran into a problem that many language learners (and movie lovers) eventually face: **subtitle desynchronization**.
@@ -15,13 +16,13 @@ In a continuation of my [earlier post](/posts/how-movies-help-my-daughter-learn-
 
 ## The Problem
 
-Let’s take a real example — a movie I recently bought sealed for only €2: The Amazing Spider-Man 2: Rise of Electro* (2014), directed by Marc Webb.  
+Let’s take a real example — a movie I recently bought sealed for only €2: The Amazing Spider-Man 2: Rise of Electro* (2014), directed by Marc Webb.
 We really enjoyed the original trilogy with Tobey Maguire, and this reboot felt like a great addition.
 
-However, when I tried to watch it with **external subtitles**, I noticed something strange.  
+However, when I tried to watch it with **external subtitles**, I noticed something strange.
 Even though the subtitle file said it matched a runtime of *2h 21min*, the subtitles were **delayed** — the character would start speaking, and only about 1 second later would the subtitle appear.
 
-At first, I tried fixing this using [**VLC Media Player**](https://www.videolan.org/vlc/), which I use to watch movies on my PC.  
+At first, I tried fixing this using [**VLC Media Player**](https://www.videolan.org/vlc/), which I use to watch movies on my PC.
 VLC includes a feature to **adjust subtitle delay**, which helps… but only at the beginning. As the movie goes on, the desynchronization **grows worse**.
 
 So I started searching for a better solution.
@@ -32,7 +33,7 @@ Luckily, VLC has a great built-in tool called **VLSub**. It allows you to search
 
 Here’s how to use it:
 
-- Open VLC and go to:  
+- Open VLC and go to:
   `Menu → View → VLSub`
 - Enter the movie title, choose your language and version (e.g. BluRay / WEB-DL), and click **Download selection**.
 - The subtitle file will be saved next to your movie with the same filename.

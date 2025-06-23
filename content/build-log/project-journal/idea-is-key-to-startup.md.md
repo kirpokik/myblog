@@ -5,6 +5,7 @@ description: "A startup begins with a strong idea. This article explores how ide
 tags: ["startup", "ideas", "mvp", "creativity", "product thinking"]
 categories: ["build-log", "project-journal"]
 category: "Dev Journey"
+comments: true
 ---
 
 ## What Makes a Good Startup Idea

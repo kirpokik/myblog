@@ -5,6 +5,7 @@ description: "Learn how to share a folder on your local network and stream its c
 tags: ["vlc", "network", "windows", "streaming", "tvbox"]
 categories: ["build-log"]
 category: "Blog"
+comments: true
 ---
 
 Streaming videos directly from your PC to your Android TV box or Smart TV can be easy and efficient when using VLC Media Player and a shared folder on your local network. This guide explains how to set it up step-by-step — no internet required.
@@ -40,7 +41,7 @@ Now the folder is accessible over your local network.
 1. Open **Command Prompt** (`Win + R`, type `cmd`, press Enter).
 2. Type: ipconfig
 
-3. Look for the line under your active connection:  
+3. Look for the line under your active connection:
 Example: `IPv4 Address. . . . . . . . . . . : 192.168.1.42`
 
 Write this IP down.

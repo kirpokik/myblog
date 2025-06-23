@@ -5,6 +5,7 @@ description: "Exploring the reasons behind choosing Django as the core framework
 tags: ["django", "framework", "project", "mvp", "web development"]
 categories: ["build-log", "project-journal"]
 category: "Dev Journey"
+comments: true
 ---
 
 When starting a new project, one of the hardest and most important decisions is choosing the right tech stack. After evaluating several options, I decided to go with **Django** — and here's why.
@@ -30,11 +31,11 @@ I briefly evaluated:
 
 ## Why Django Made Sense
 
-- 🚀 **Fast MVP development** thanks to built-in admin and ORM  
-- 🔒 **Secure by default** with CSRF, authentication, and user management  
-- 🧰 **Full-stack out of the box**, no need to stitch libraries together  
-- 🛠️ **Huge ecosystem** (Django REST Framework, Celery, etc.)  
-- 📚 **Excellent docs** and community support  
+- 🚀 **Fast MVP development** thanks to built-in admin and ORM
+- 🔒 **Secure by default** with CSRF, authentication, and user management
+- 🧰 **Full-stack out of the box**, no need to stitch libraries together
+- 🛠️ **Huge ecosystem** (Django REST Framework, Celery, etc.)
+- 📚 **Excellent docs** and community support
 
 ## What I Gave Up
 

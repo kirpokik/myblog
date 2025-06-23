@@ -5,6 +5,7 @@ description: "Exploring the reasons behind choosing Django as the core framework
 tags: ["django", "framework", "project", "mvp", "web development"]
 categories: ["build-log", "project-journal"]
 category: "Dev Journey"
+comments: true
 ---
 
 ## ✍️ Where My MVP Ideas Come From
@@ -32,7 +33,7 @@ I want something that:
 - Doesn't depend on a perfect UI
 - Focuses on the core problem
 
-> Speed matters more than polish.  
+> Speed matters more than polish.
 > Feedback matters more than features.
 
 ---

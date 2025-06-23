@@ -5,6 +5,7 @@ description: "In this post, I explain why I chose Hugo as the engine for my blog
 tags: ["hugo", "static site", "blogging", "developer tools"]
 categories: ["Blog"]
 category: "Blog"
+comments: true
 ---
 
 ## What is Hugo?
@@ -89,4 +90,4 @@ And once you get used to the Go templating syntax, it’s actually kind of fun �
 
 ---
 
-💬 *What are you using for your blog? Have you tried Hugo? Let me know in the comments or reach out on [Twitter](https://twitter.com/yourprofile).*  
+💬 *What are you using for your blog? Have you tried Hugo? Let me know in the comments or reach out on [Twitter](https://twitter.com/yourprofile).*

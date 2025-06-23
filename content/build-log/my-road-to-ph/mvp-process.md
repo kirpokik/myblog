@@ -6,6 +6,7 @@ categories: ["my-road-to-ph"]
 category: "Pidchas Startup "
 type: build-log
 draft: false
+comments: true
 ---
 The idea for **Pidchas** came from observing how long-distance shipping delays affect small and mid-size sellers.
 
