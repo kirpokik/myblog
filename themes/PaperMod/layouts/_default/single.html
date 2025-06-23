@@ -60,6 +60,24 @@
   {{- if (.Param "comments") }}
   {{- partial "comments.html" . }}
   {{- end }}
+<!-- Giscus Comments -->
+<div id="comments">
+  <script src="https://giscus.app/client.js"
+        data-repo="kirpokik/myblog"
+        data-repo-id="R_kgDOPATcDw"
+        data-category="Blog Comments"
+        data-category-id="DIC_kwDOPATcD84Cr4k0"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="0"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+ </script>
+</div>
 </article>
 
 {{- end }}{{/* end main */}}
