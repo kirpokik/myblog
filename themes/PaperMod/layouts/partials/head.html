@@ -157,3 +157,11 @@
 {{- partial "templates/twitter_cards.html" . }}
 {{- partial "templates/schema_json.html" . }}
 {{- end -}}
+
+{{ with site.Params.assets.umamiWebsiteId }}
+  <script
+    defer
+    src="{{ site.Params.assets.umamiScriptUrl }}"
+    data-website-id="{{ site.Params.assets.umamiWebsiteId }}"
+  ></script>
+{{ end }}
