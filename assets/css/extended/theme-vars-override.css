@@ -1,0 +1,94 @@
+
+:root {
+  --theme: #fff;
+  --entry: #cfcfff;
+  --primary: rgba(0, 0, 106, 0.88);
+  --secondary: rgba(0, 0, 80, 0.78);
+  --tertiary: rgba(0, 0, 106, 0.16);
+  --content: rgba(0, 0, 60, 0.88);
+  --hljs-bg: #1c1d21;
+  --code-bg: #f5f5f5;
+  --border: #eee;
+}
+
+.dark {
+  --theme: rgb(9, 10, 12);
+  --entry: rgb(26, 26, 31);
+  --code-block-bg: rgb(28, 29, 33);
+  --code-bg: rgb(28, 29, 33);
+  --border: #446;
+}
+
+
+
+body {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  
+}
+
+* {
+  font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.first-entry {
+  margin: unset;
+}
+
+.first-entry .entry-content ul {
+  padding-inline-start: 20px;
+}
+
+
+.home-info .entry-content a, .bio a {
+  box-shadow: 0 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.post-entry {
+  border: 1px solid rgb(51, 51, 51)
+}
+
+.post-content a {
+  color: #74b9ff;
+}
+
+.post-content code {
+  margin: unset;
+  color: #e6c07b;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.post-category-badge {
+  background-color: #dadadb; /* светло-серый */
+  color: #374151; /* тёмно-серый */
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.cursor {
+  display: inline-block;
+  width: 5px;             /* Толщина курсора */
+  height: 1.2em;          /* Чуть выше строки */
+  margin-left: 6px;       /* Отступ от текста */
+  background-color: var(--primary);
+  animation: blink 1s steps(1) infinite;
+  vertical-align: middle;
+ 
+}
+
+.post-content h2:not(.timeline h2) {
+  border-bottom: 1px dashed;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+

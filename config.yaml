@@ -1,0 +1,92 @@
+baseURL: "https://ksorok.in"
+languageCode: "en-us"
+title: "Kostiantyn Sorokin | Personal Blog & Projects"
+theme: ["PaperMod"]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+pagination:
+  pagerSize: 3
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  label:
+    text: "sorok.in"
+  env: "production"
+  defaultTheme: "dark"
+  disableThemeToggle: true
+  ShowRssButtonInSectionTermList: true
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowToc: false
+  hideFooter: false
+  hideSummary: false
+  description: Kostiantyn Sorokin – Personal Blog & Projects
+
+  assets:
+    customCSS: ["/css/extended/theme-vars-override.css"]
+    externalLinksInNewTab: true
+
+  homeInfoParams:
+    Title: '<code>[~] blog$<span class="cursor"></span></code>'
+    Content: |
+      <p>
+        Documenting my journey from building MVPs to launching on Product Hunt.
+        A personal blog about my projects, the tools I use, what
+        inspires me — and the things I enjoy creating.
+        <a href="/about">Read more..
+
+        </a></p>
+
+      <br>
+
+      <ul>
+        <li><a href="https://www.instagram.com/ksorok.in/" target="_blank" rel="noopener noreferrer"><strong>Instagram</strong></a> – Get my latest blog updates and insights.</li>
+        <li><a href="https://www.linkedin.com/in/kirpokik/" target="_blank" rel="noopener noreferrer"><strong>Linkedin</strong></a> – Connect to follow my work.</li>
+        <li>Reach out to me at <a href="mailto:contact@ksorok.in">contact@ksorok.in</a> 📨</li>
+      </ul>
+
+mainSections:
+  - posts
+  - build-log
+
+
+
+taxonomies:
+  category: categories
+  tag: tags
+
+profileMode:
+  enabled: false
+
+menu:
+  main:
+    - name: "About"
+      url: "/about/"
+      weight: 1
+    - name: "Archive"
+      url: "/archives/"
+      weight: 2
+    - name: "Blog"
+      url: "/posts/"
+      weight: 3
+    - name: "Dev Log"
+      url: "/build-log/"
+      weight: 4
+    - name: "Projects"
+      url: "/projects/"
+      weight: 5
+    - name: "Search"
+      url: "/search/"
+      weight: 6
