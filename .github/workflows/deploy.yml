@@ -3,29 +3,30 @@ name: Build and Deploy Hugo site to Hostinger via FTP
 on:
   push:
     branches:
-      - main  # или другая твоя основная ветка, если отличается
+      - main  # или master, если у тебя другая ветка
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.146.0'  # замени на свою, если нужно
+          hugo-version: '0.146.0'
+          extended: true
 
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Deploy to Hostinger via FTP
+      - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          ftp-server: ${{ secrets.FTP_HOST }}
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_PATH }}
           local-dir: ./public
