@@ -38,7 +38,7 @@ params:
   assets:
     customCSS: ["/css/extended/theme-vars-override.css"]
     externalLinksInNewTab: true
-    umamiWebsiteId: "850ad737-be57-4c23-8b0e-1b00b00a3aa7"  # ← вставь сюда ID сайта из Umami
+    umamiWebsiteId: "d1f72a89-bede-4cb3-a1be-edf59177d826"  # ← вставь сюда ID сайта из Umami
     umamiScriptUrl: "https://analytics.umami.is/script.js"
 
   homeInfoParams:
