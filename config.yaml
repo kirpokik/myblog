@@ -29,6 +29,7 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: true
+  comments: true
   ShowToc: false
   hideFooter: false
   hideSummary: false

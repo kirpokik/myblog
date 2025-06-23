@@ -61,6 +61,7 @@
   {{- partial "comments.html" . }}
   {{- end }}
 <!-- Giscus Comments -->
+{{ if .Params.comments }}
 <div id="comments">
   <script src="https://giscus.app/client.js"
         data-repo="kirpokik/myblog"
@@ -78,6 +79,7 @@
         async>
  </script>
 </div>
+{{ end }}
 </article>
 
 {{- end }}{{/* end main */}}

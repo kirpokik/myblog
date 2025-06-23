@@ -2,6 +2,7 @@
 title: "About Me"
 layout: "page"
 hideMeta: true
+comments: false
 ---
 
 <img src="/images/avatar.jpg" alt="My photo" width="100" style="float: right; margin: 10px; border-radius: 11px;" />
