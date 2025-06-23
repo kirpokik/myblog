@@ -6,6 +6,7 @@ tags: ["language learning", "french", "movies", "cartoons", "plex", "subtitles",
 categories: ["Blog"]
 category: "Blog"
 ShowToc: true
+comments: true
 showBreadcrumbs: true
 ---
 
@@ -44,7 +45,7 @@ This method gives us full control:
 
 ### External Blu-ray Drive
 
-We’re using the **USB 3.0 External Blu-ray Drive Portable 3D BD-Combo** — a budget-friendly external drive that supports Blu-ray, DVD, and CD reading. It works on both Windows and Mac and is one of the most affordable options we could find.  
+We’re using the **USB 3.0 External Blu-ray Drive Portable 3D BD-Combo** — a budget-friendly external drive that supports Blu-ray, DVD, and CD reading. It works on both Windows and Mac and is one of the most affordable options we could find.
 ➡️ [View it on AliExpress](https://www.aliexpress.com/item/1005007633897719.html?spm=a2g0o.order_list.order_list_main.5.56771802grrM2E)
 
 If you prefer something from a more well-known brand, you can look into models on Amazon, but be prepared to pay 2–3× more.
@@ -74,7 +75,7 @@ To start, you’ll need subtitle files that match the **exact version** of your 
 - [**Subscene.com**](https://subscene.com/)
 - [**Addic7ed.com**](https://www.addic7ed.com/)
 
-💡 **Tip:** Search by full movie title and year. For our example:  
+💡 **Tip:** Search by full movie title and year. For our example:
 
 
 ---

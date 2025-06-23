@@ -19,7 +19,7 @@ outputs:
 
 params:
   label:
-    text: "sorok.in"
+    text: "ksorok.in"
   env: "production"
   defaultTheme: "dark"
   disableThemeToggle: true
