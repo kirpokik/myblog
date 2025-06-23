@@ -11,7 +11,7 @@ This website is my personal blog where I document my journey in building MVP app
 
 You can find all posts in the [Archive](/archives), or use [Search](/search) and [Tags](/tags) to explore content by topic.
 
-I write about whatever catches my interest — whether it's retro gaming, programming, or personal productivity. There are no rigid categories, just honest notes from things I discover or experience.
+I write about whatever sparks my curiosity — it could be anything from retro gaming to programming or personal productivity. There are no strict categories here, just honest notes from the things I learn or experience.
 
 If you’d like to get in touch — whether you have questions about my projects or just want to chat about ideas — feel free to email me at [contact@ksorok.in](mailto:contact@ksorok.in).
 I'm always open to new connections, especially those that can help bring creative projects to life.
