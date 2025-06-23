@@ -3,7 +3,7 @@ name: Build and Deploy Hugo site to Hostinger via FTP
 on:
   push:
     branches:
-      - main  # или master, если у тебя другая ветка
+      - main
 
 jobs:
   build-deploy:
