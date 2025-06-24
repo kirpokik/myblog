@@ -1,7 +1,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+
+{{- /* Убираем условие "production" для robots, Hugo сам справляется с "noindex, nofollow" на dev */}}
+{{- if not .Params.robotsNoIndex }}
 <meta name="robots" content="index, follow">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
@@ -10,19 +12,15 @@
 {{- /* Title */}}
 <title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
 
-{{- /* Meta */}}
-{{- if .IsHome }}
-{{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
-{{- else }}
-<meta name="keywords" content="{{ if .Params.keywords -}}
-    {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
-    {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
-{{- end }}
+{{- /* Meta Description */}}
 <meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
-    {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
+    {{- .Summary | default (printf "%s - %s" .Title site.Title) }}{{- else }}
     {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
 <meta name="author" content="Kostiantyn Sorokin">
 <link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
+
+{{- /* Удаляем все SiteVerificationTag, если вы их не используете */}}
+{{- /*
 {{- if site.Params.analytics.google.SiteVerificationTag }}
 <meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
 {{- end }}
@@ -35,28 +33,87 @@
 {{- if site.Params.analytics.naver.SiteVerificationTag }}
 <meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
 {{- end }}
-{{ if .IsPage }}
-  <!-- Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ .Title | plainify }}">
-  <meta property="og:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
-  <meta property="og:url" content="{{ .Permalink }}">
-  {{ with .Params.cover.image }}
-    <meta property="og:image" content="{{ . | absURL }}">
-  {{ else }}
-    <meta property="og:image" content="{{ "favicon-512.png" | absURL }}">
-  {{ end }}
-  <meta property="og:site_name" content="{{ site.Title }}">
+*/}}
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ .Title | plainify }}">
-  <meta name="twitter:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
-  <meta name="twitter:image" content="{{ with .Params.cover.image }}{{ . | absURL }}{{ else }}{{ "favicon-512.png" | absURL }}{{ end }}">
-{{ end }}
+{{- /* Open Graph, Twitter Cards и Schema.org для главной и для страниц/постов */}}
+{{- if .IsPage }}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ .Title | plainify }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    {{ with .Params.cover.image }}
+        <meta property="og:image" content="{{ . | absURL }}">
+    {{ else }}
+        <meta property="og:image" content="{{ "favicon-512.png" | absURL }}">
+    {{ end }}
+    <meta property="og:site_name" content="{{ site.Title }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title | plainify }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
+    <meta name="twitter:image" content="{{ with .Params.cover.image }}{{ . | absURL }}{{ else }}{{ "favicon-512.png" | absURL }}{{ end }}">
+
+    {{- /* Schema.org JSON-LD for pages/posts - можно улучшить, если нужно больше деталей */}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ .Title | plainify }}",
+      "description": "{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Kostiantyn Sorokin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.Title }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ "favicon-512.png" | absURL }}"
+        }
+      },
+      "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
+      "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}"
+      {{ with .Params.cover.image }},
+      "image": "{{ . | absURL }}"
+      {{ end }}
+    }
+    </script>
+{{- else }}
+    <meta property="og:url" content="{{ site.BaseURL }}">
+    <meta property="og:site_name" content="{{ site.Title }}">
+    <meta property="og:title" content="{{ site.Title }}">
+    <meta property="og:description" content="{{ site.Params.description }}">
+    <meta property="og:locale" content="en-us">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ "favicon-512.png" | absURL }}">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ site.Title }}">
+    <meta name="twitter:description" content="{{ site.Params.description }}">
+    <meta name="twitter:image" content="{{ "favicon-512.png" | absURL }}">
+
+    {{- /* Schema.org JSON-LD for Home Page */}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kostiantyn Sorokin",
+      "url": "{{ site.BaseURL }}",
+      "description": "{{ site.Params.description }}",
+      "image": "{{ "favicon.ico" | absURL }}",
+      "sameAs": []
+    }
+    </script>
+{{- end }}
+
 {{- /* Styles */}}
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
-{{- /* includes */}}
+
 {{- $includes := slice }}
 {{- $includes = $includes | append (" " | resources.FromString "assets/css/includes-blank.css")}}
 
@@ -83,7 +140,7 @@
 
 {{- /* bundle all required css */}}
 {{- /* Add extended css after theme style */ -}}
-{{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css"  }}
+{{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css" }}
 
 {{- if not site.Params.assets.disableFingerprinting }}
 {{- $stylesheet := $stylesheet | fingerprint }}
@@ -94,6 +151,7 @@
 {{ range .Site.Params.assets.customCSS }}
   <link rel="stylesheet" href="{{ . }}">
 {{ end }}
+
 {{- /* Search */}}
 {{- if (eq .Layout `search`) -}}
 <link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
@@ -110,16 +168,17 @@
 {{- end -}}
 
 {{- /* Favicons */}}
-<link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png">
-<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
-<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
-<link rel="mask-icon" href="{{ site.Params.assets.safari_pinned_tab | default "safari-pinned-tab.svg" | absURL }}">
-<meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#2e2e33" }}">
-<meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
+{{- /* Объединяем теги favicons, т.к. Hugo PaperMod уже имеет хорошую логику для них */}}
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="icon" href="https://ksorok.in/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ksorok.in/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ksorok.in/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ksorok.in/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ksorok.in/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
 
-{{- /* RSS */}}
+{{- /* RSS & Alternates */}}
 {{ range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
@@ -133,7 +192,6 @@
         .top-link {
             display: none;
         }
-
     </style>
     {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
     <style>
@@ -149,34 +207,23 @@
                 --code-bg: rgb(55, 56, 62);
                 --border: rgb(51, 51, 51);
             }
-
             .list {
                 background: var(--theme);
             }
-
             .list:not(.dark)::-webkit-scrollbar-track {
                 background: 0 0;
             }
-
             .list:not(.dark)::-webkit-scrollbar-thumb {
                 border-color: var(--theme);
             }
         }
-
     </style>
     {{- end }}
 </noscript>
 
 {{- partial "extend_head.html" . -}}
 
-{{- /* Misc */}}
-{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-{{- partial "google_analytics.html" . }}
-{{- partial "templates/opengraph.html" . }}
-{{- partial "templates/twitter_cards.html" . }}
-{{- partial "templates/schema_json.html" . }}
-{{- end -}}
-
+{{- /* Только Umami для метрики */}}
 {{ with site.Params.assets.umamiWebsiteId }}
   <script
     defer
