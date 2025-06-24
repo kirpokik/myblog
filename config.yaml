@@ -27,8 +27,14 @@ outputs:
     - RSS
     - JSON
     - robots
+    - sitemap
 
-
+outputFormats:
+  robots:
+    mediaType: text/plain
+    baseName: robots
+    isPlainText: true
+    notAlternative: true
 
 params:
   label:
@@ -79,8 +85,6 @@ params:
 mainSections:
   - posts
   - build-log
-
-
 
 taxonomies:
   category: categories
