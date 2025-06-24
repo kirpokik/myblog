@@ -3,7 +3,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
 <meta name="robots" content="index, follow">
-<meta name="description" content="{{or .Params.description .Site.Params.description}}">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
 {{- end }}
@@ -22,7 +21,7 @@
 <meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
     {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
     {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
-<meta name="author" content="{{ (partial "author.html" . ) }}">
+<meta name="author" content="Kostiantyn Sorokin">
 <link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
 {{- if site.Params.analytics.google.SiteVerificationTag }}
 <meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
@@ -36,7 +35,25 @@
 {{- if site.Params.analytics.naver.SiteVerificationTag }}
 <meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
 {{- end }}
+{{ if .IsPage }}
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ .Title | plainify }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with .Params.cover.image }}
+    <meta property="og:image" content="{{ . | absURL }}">
+  {{ else }}
+    <meta property="og:image" content="{{ "favicon-512.png" | absURL }}">
+  {{ end }}
+  <meta property="og:site_name" content="{{ site.Title }}">
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title | plainify }}">
+  <meta name="twitter:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
+  <meta name="twitter:image" content="{{ with .Params.cover.image }}{{ . | absURL }}{{ else }}{{ "favicon-512.png" | absURL }}{{ end }}">
+{{ end }}
 {{- /* Styles */}}
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
 {{- /* includes */}}

@@ -60,7 +60,23 @@
   {{- if (.Param "comments") }}
   {{- partial "comments.html" . }}
   {{- end }}
-<!-- Giscus Comments -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Summary }}",
+  "url": "{{ .Permalink }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Author.name }}"
+  },
+  "datePublished": "{{ .PublishDate }}",
+  "dateModified": "{{ .Lastmod }}"
+}
+</script>
+
+  <!-- Giscus Comments -->
 {{ if .Params.comments }}
 <div id="comments" style="margin-top: 20px;">
   <script src="https://giscus.app/client.js"

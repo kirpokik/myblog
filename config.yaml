@@ -16,11 +16,13 @@ outputs:
     - HTML
     - RSS
     - JSON
+    - robots
 
 params:
   label:
     text: "ksorok.in"
   env: "production"
+  productionURL: "https://ksorok.in/"
   defaultTheme: "dark"
   disableThemeToggle: true
   ShowRssButtonInSectionTermList: true

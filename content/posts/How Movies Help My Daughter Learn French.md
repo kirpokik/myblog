@@ -8,6 +8,10 @@ category: "Blog"
 ShowToc: true
 comments: true
 showBreadcrumbs: true
+cover:
+  image: "/images/french-films-cover.png"  # <- путь к картинке
+  alt: "French learning with movies"
+  hidden: false
 ---
 
 ## Introduction
