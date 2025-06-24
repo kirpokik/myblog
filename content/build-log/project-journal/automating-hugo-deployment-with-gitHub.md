@@ -107,6 +107,11 @@ git add .
 git commit -m "Update: new article"
 git push origin main
 ```
+<p align="center">
+  <img src="/images/build-hugo.png" alt="Subtitle delay example in VLC" style="max-width: 100%;">
+  <img src="/images/build-hugo-2.png" alt="Subtitle delay example in VLC" style="max-width: 100%;">
+</p>
+
 GitHub will take care of the rest: build, FTP upload, and you're live.
 
 ### Conclusion

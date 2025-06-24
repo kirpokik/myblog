@@ -64,8 +64,8 @@
 {{- end }}
 
 <article class="{{ $class }}">
-  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+  {{/* Не показывать ковер в списках */}}
+{{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" true) }}
   <header class="entry-header">
     <h2 class="entry-hint-parent">
       {{- .Title }}
