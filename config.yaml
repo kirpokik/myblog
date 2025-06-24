@@ -26,15 +26,7 @@ outputs:
     - HTML
     - RSS
     - JSON
-    - robots
     - sitemap
-
-outputFormats:
-  robots:
-    mediaType: text/plain
-    baseName: robots
-    isPlainText: true
-    notAlternative: true
 
 params:
   label:

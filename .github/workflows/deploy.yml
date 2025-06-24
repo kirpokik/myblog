@@ -20,7 +20,7 @@ jobs:
           extended: true
 
       - name: Build Hugo site
-        run: hugo --minify --environment production
+        run: hugo --minify
 
       - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.3.0

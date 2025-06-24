@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+Disallow: /*.pdf$
+Disallow: /*.json$
+Sitemap: https://ksorok.in/sitemap.xml
