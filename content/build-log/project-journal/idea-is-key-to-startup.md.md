@@ -4,7 +4,7 @@ date: 2025-05-31
 description: "A startup begins with a strong idea. This article explores how ideas shape startups, where to find them, and how to develop them into real products."
 tags: ["startup", "ideas", "mvp", "creativity", "product thinking"]
 categories: ["build-log", "project-journal"]
-category: "Dev Journey"
+category: "Code Notes"
 comments: true
 ---
 

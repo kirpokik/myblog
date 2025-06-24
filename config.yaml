@@ -4,12 +4,22 @@ title: "Kostiantyn Sorokin | Personal Blog & Projects"
 theme: ["PaperMod"]
 
 markup:
+  highlight:
+    style: monokai  # или dracula, solarized-dark и т.п.
+    noClasses: false
+    guessSyntax:  true      # Автоопределение языка
+    lineNos: true          # Нумерация строк (если нужна)
+    lineNumbersInTable: true
   goldmark:
     renderer:
       unsafe: true
 
+pygmentsUseClasses: true
+pygmentsCodeFences: true
+pygmentsStyle: monokai
+
 pagination:
-  pagerSize: 3
+  pagerSize: 5
 
 outputs:
   home:
@@ -17,6 +27,8 @@ outputs:
     - RSS
     - JSON
     - robots
+
+
 
 params:
   label:
@@ -38,13 +50,15 @@ params:
   description: Kostiantyn Sorokin – Personal Blog & Projects
 
   assets:
-    customCSS: ["/css/extended/theme-vars-override.css"]
+    customCSS:
+      - "/css/extended/theme-vars-override.css"
+      - "/css/extended/chroma.css"
     externalLinksInNewTab: true
     umamiWebsiteId: "d1f72a89-bede-4cb3-a1be-edf59177d826"  # ← вставь сюда ID сайта из Umami
     umamiScriptUrl: "https://analytics.umami.is/script.js"
 
   homeInfoParams:
-    Title: '<code>[~] blog$<span class="cursor"></span></code>'
+    Title: '<code>[~/blog]$<span class="cursor"></span></code>'
     Content: |
       <p>
         Documenting my journey from building MVPs to launching on Product Hunt.

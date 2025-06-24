@@ -1,4 +1,4 @@
 ---
-title: "Development Journal & Technical Notes"
+title: "Code Notes"
 ---
-Insights on development progress, tech hurdles, and key learnings
+Technical notes on setup, automation, and the tools behind my projects

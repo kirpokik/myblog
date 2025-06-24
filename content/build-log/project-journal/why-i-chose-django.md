@@ -4,7 +4,7 @@ date: 2025-05-30
 description: "Exploring the reasons behind choosing Django as the core framework for my current project."
 tags: ["django", "framework", "project", "mvp", "web development"]
 categories: ["build-log", "project-journal"]
-category: "Dev Journey"
+category: "Code Notes"
 comments: true
 ---
 

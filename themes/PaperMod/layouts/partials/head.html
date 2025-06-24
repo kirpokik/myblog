@@ -91,7 +91,9 @@
 {{- else }}
 <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
 {{- end }}
-
+{{ range .Site.Params.assets.customCSS }}
+  <link rel="stylesheet" href="{{ . }}">
+{{ end }}
 {{- /* Search */}}
 {{- if (eq .Layout `search`) -}}
 <link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
