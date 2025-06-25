@@ -1,6 +1,6 @@
 baseURL: "https://ksorok.in"
 languageCode: "en-us"
-title: "Kostiantyn Sorokin | Personal Blog & Projects"
+title: "Kostiantyn Sorokin"
 theme: ["PaperMod"]
 
 markup:
@@ -45,7 +45,7 @@ params:
   ShowToc: false
   hideFooter: false
   hideSummary: false
-  description: Kostiantyn Sorokin – Personal Blog & Projects
+  description: A personal blog about my projects, the tools I use, what inspires me, and the things I enjoy creating – a journey from ideas to launch..
 
   assets:
     customCSS:
