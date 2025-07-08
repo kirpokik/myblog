@@ -1,5 +1,5 @@
 ---
-title: "Pidchas — A Startup Idea for Pre-Selling Products"
+title: "Pidchas Log #01: The Startup Idea & Vision"
 date: 2025-06-01
 tags: ["mvp", "process", "ph"]
 categories: ["my-road-to-ph"]
