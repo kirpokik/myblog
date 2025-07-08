@@ -1,7 +1,8 @@
 ---
 title: "Auto Keyboard Language Switching on Windows"
 date: 2025-07-08
-description: "Tired of constantly switching keyboard layouts between coding and chatting? Automate it with AutoHotkey and boost your workflow efficiency on Windows."
+description: "Learn how to use a simple AutoHotkey script to automatically switch keyboard layouts based on the application you're using in Windows. Boost your productivity today!"
+share_image: "/images/build-hugo-2.png"
 tags: ["AutoHotkey", "keyboard layout", "productivity", "Windows", "VS Code", "Firefox", "automation"]
 categories: ["Guides"]
 ShowToc: true

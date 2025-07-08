@@ -1,0 +1,206 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+{{- if not .Params.robotsNoIndex }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+<title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
+
+<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- with site.Params.description }}{{ . }}{{- end }}{{- end -}}">
+<meta name="author" content="Kostiantyn Sorokin">
+<link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
+
+{{- if .IsPage }}
+    {{- $image := "" -}}
+    {{- if .Params.share_image -}}
+        {{- $image = .Params.share_image | absURL -}}
+    {{- else if .Params.cover.image -}}
+        {{- $image = .Params.cover.image | absURL -}}
+    {{- else -}}
+        {{- $image = "favicon-512.png" | absURL -}}
+    {{- end -}}
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ .Title | plainify }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:image" content="{{ $image }}">
+    <meta property="og:site_name" content="{{ site.Title }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title | plainify }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
+    <meta name="twitter:image" content="{{ $image }}">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ .Title | plainify }}",
+      "description": "{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Kostiantyn Sorokin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.Title }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ "favicon-512.png" | absURL }}"
+        }
+      },
+      "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
+      "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+      "image": "{{ $image }}"
+    }
+    </script>
+{{- else }}
+    <meta property="og:url" content="{{ site.BaseURL }}">
+    <meta property="og:site_name" content="{{ site.Title }}">
+    <meta property="og:title" content="{{ site.Title }}">
+    <meta property="og:description" content="{{ site.Params.description }}">
+    <meta property="og:locale" content="en-us">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ "favicon-512.png" | absURL }}">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ site.Title }}">
+    <meta name="twitter:description" content="{{ site.Params.description }}">
+    <meta name="twitter:image" content="{{ "favicon-512.png" | absURL }}">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kostiantyn Sorokin",
+      "url": "{{ site.BaseURL }}",
+      "description": "{{ site.Params.description }}",
+      "image": "{{ "favicon.ico" | absURL }}",
+      "sameAs": [
+        "https://www.instagram.com/ksorok.in/",
+        "https://www.linkedin.com/in/kirpokik/",
+        "https://github.com/kirpokik"
+      ]
+    }
+    </script>
+{{- end }}
+
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
+
+{{- $includes := slice }}
+{{- $includes = $includes | append (" " | resources.FromString "assets/css/includes-blank.css")}}
+
+{{- if not (eq site.Params.assets.disableScrollBarStyle true) }}
+    {{- $ScrollStyle := (resources.Get "css/includes/scroll-bar.css") }}
+    {{- $includes = (append $ScrollStyle $includes) }}
+{{- end }}
+
+{{- $includes_all := $includes | resources.Concat "assets/css/includes.css" }}
+
+{{- $theme_vars := (resources.Get "css/core/theme-vars.css") }}
+{{- $reset := (resources.Get "css/core/reset.css") }}
+{{- $media := (resources.Get "css/core/zmedia.css") }}
+{{- $license_css := (resources.Get "css/core/license.css") }}
+{{- $common := (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" }}
+
+{{- $chroma_styles := (resources.Get "css/includes/chroma-styles.css") }}
+{{- $chroma_mod := (resources.Get "css/includes/chroma-mod.css") }}
+
+{{- $core := (slice $theme_vars $reset $common $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
+{{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
+
+{{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css" }}
+
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $stylesheet := $stylesheet | fingerprint }}
+<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" rel="preload stylesheet" as="style">
+{{- else }}
+<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
+{{- end }}
+{{ range .Site.Params.assets.customCSS }}
+  <link rel="stylesheet" href="{{ . }}">
+{{ end }}
+
+{{- if (eq .Layout `search`) -}}
+<link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
+{{- $fastsearch := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify }}
+{{- $fusejs := resources.Get "js/fuse.basic.min.js" }}
+{{- $license_js := resources.Get "js/license.js" }}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $search := (slice $fusejs $license_js $fastsearch ) | resources.Concat "assets/js/search.js" | fingerprint }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
+{{- else }}
+{{- $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}"></script>
+{{- end }}
+{{- end -}}
+
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="icon" href="https://ksorok.in/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ksorok.in/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ksorok.in/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ksorok.in/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ksorok.in/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}">
+{{ end -}}
+{{- range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{ end -}}
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+            .list {
+                background: var(--theme);
+            }
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+    {{- end }}
+</noscript>
+
+{{- partial "extend_head.html" . -}}
+
+{{ with site.Params.assets.umamiWebsiteId }}
+  <script
+    defer
+    src="{{ site.Params.assets.umamiScriptUrl }}"
+    data-website-id="{{ site.Params.assets.umamiWebsiteId }}"
+  ></script>
+{{ end }}
