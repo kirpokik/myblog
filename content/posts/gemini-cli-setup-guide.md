@@ -133,5 +133,3 @@ gemini auth login
 This will open a browser window for you to log in with your Google account. After that, your Gemini CLI will be fully configured and ready to use.
 
 I hope this detailed, real-world guide saves you the hours of frustration I went through. It's a perfect example of how the "simple" things in tech often have hidden depths.
-
-```
