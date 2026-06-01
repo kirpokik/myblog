@@ -462,6 +462,59 @@ samp {
   opacity: 0.9;
 }
 
+.list .post-entry-numbered {
+  margin: 0;
+  padding: 22px 0;
+  border-top: 1px solid var(--paper-line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.list .post-entry-numbered .post-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.list .post-entry-numbered .post-index {
+  font-size: 13px;
+  color: var(--secondary);
+  opacity: 0.85;
+  letter-spacing: 0.08em;
+}
+
+.list .post-entry-numbered .post-title-line {
+  margin: 0;
+  line-height: 1.25;
+}
+
+.list .post-entry-numbered .title-link {
+  display: inline;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.list .post-entry-numbered .title-link:hover {
+  color: var(--accent);
+}
+
+.list .post-entry-numbered .post-meta-line {
+  margin: 4px 0 0;
+  font-size: 0.84rem;
+}
+
+.list .post-entry-numbered .entry-footer {
+  color: var(--secondary);
+}
+
+.list .post-entry-numbered .entry-link {
+  display: none;
+}
+
+:root[data-theme="dark"] .list .post-entry-numbered {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
 .first-entry .entry-content {
   color: var(--content);
   font-size: 1.0rem;

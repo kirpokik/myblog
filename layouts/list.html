@@ -167,8 +167,25 @@
     </header>
   </section>
   {{- end }}
+  {{- $isNumberedSection := and (eq .Kind "section") (or (eq .Section "posts") (eq .RelPermalink "/notes/") (eq .RelPermalink "/dev/")) }}
   {{- range $index, $page := $paginator.Pages }}
 
+  {{- if $isNumberedSection }}
+  {{- $globalIndex := add (mul (sub $paginator.PageNumber 1) $paginator.PagerSize) (add $index 1) }}
+  <article class="post-entry post-entry-numbered">
+    <div class="post-copy">
+      <span class="post-index">{{ printf "%02d" $globalIndex }}</span>
+      <h2 class="post-title-line">
+        <a class="title-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      {{- if not (.Param "hideMeta") }}
+      <footer class="entry-footer post-meta-line">
+        {{- partial "post_meta.html" . -}}
+      </footer>
+      {{- end }}
+    </div>
+  </article>
+  {{- else }}
   {{- $class := "post-entry" }}
 
   {{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
@@ -206,6 +223,7 @@
     {{- end }}
     <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .RelPermalink }}"></a>
   </article>
+  {{- end }}
   {{- end }}
 {{- end }}
 
