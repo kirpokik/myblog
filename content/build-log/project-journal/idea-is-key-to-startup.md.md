@@ -6,6 +6,8 @@ tags: ["startup", "ideas", "mvp", "creativity", "product thinking"]
 categories: ["build-log", "project-journal"]
 category: "Code Notes"
 comments: true
+aliases:
+  - /build-log/project-journal/idea-is-key-to-startup/
 ---
 
 ## What Makes a Good Startup Idea

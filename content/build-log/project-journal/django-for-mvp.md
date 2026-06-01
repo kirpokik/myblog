@@ -7,6 +7,8 @@ categories: ["build-log", "project-journal"]
 category: "Code Notes"
 type: post
 comments: true
+aliases:
+  - /build-log/project-journal/django-for-mvp/
 
 ---
 

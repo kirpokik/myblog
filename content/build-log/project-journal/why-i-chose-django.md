@@ -6,6 +6,8 @@ tags: ["django", "framework", "project", "mvp", "web development"]
 categories: ["build-log", "project-journal"]
 category: "Code Notes"
 comments: true
+aliases:
+  - /build-log/project-journal/why-i-chose-django/
 ---
 
 When starting a new project, one of the hardest and most important decisions is choosing the right tech stack. After evaluating several options, I decided to go with **Django** — and here's why.

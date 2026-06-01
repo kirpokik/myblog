@@ -7,6 +7,8 @@ categories: ["build-log", "project-journal"]
 category: "Code Notes"
 comments: true
 ShowToc: true
+aliases:
+  - /build-log/project-journal/automating-hugo-deployment-with-github/
 ---
 
 Deploying a static site manually every time can be a boring and error-prone task. If you're using [Hugo](https://gohugo.io/), a static site generator, and host your site with a provider like [Hostinger](https://www.hostinger.com/), you might be used to generating the site with `hugo` and dragging the contents of the `public/` folder into a file manager or FTP client.

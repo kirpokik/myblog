@@ -1,6 +1,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script>
+(() => {
+  const storedTheme = localStorage.getItem("pref-theme");
+  if (storedTheme === "dark" || storedTheme === "light") {
+    document.documentElement.dataset.theme = storedTheme;
+  }
+})();
+</script>
 
 {{- if not .Params.robotsNoIndex }}
 <meta name="robots" content="index, follow">
@@ -21,7 +29,7 @@
     {{- else if .Params.cover.image -}}
         {{- $image = .Params.cover.image | absURL -}}
     {{- else -}}
-        {{- $image = "favicon-512.png" | absURL -}}
+        {{- $image = "images/gemini-cli-setup-cover.png" | absURL -}}
     {{- end -}}
 
     <meta property="og:type" content="article">
@@ -70,12 +78,12 @@
     <meta property="og:description" content="{{ site.Params.description }}">
     <meta property="og:locale" content="en-us">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="{{ "favicon-512.png" | absURL }}">
+    <meta property="og:image" content="{{ "images/gemini-cli-setup-cover.png" | absURL }}">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ site.Title }}">
     <meta name="twitter:description" content="{{ site.Params.description }}">
-    <meta name="twitter:image" content="{{ "favicon-512.png" | absURL }}">
+    <meta name="twitter:image" content="{{ "images/gemini-cli-setup-cover.png" | absURL }}">
 
     <script type="application/ld+json">
     {
@@ -94,15 +102,10 @@
     </script>
 {{- end }}
 
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
 
 {{- $includes := slice }}
 {{- $includes = $includes | append (" " | resources.FromString "assets/css/includes-blank.css")}}
 
-{{- if not (eq site.Params.assets.disableScrollBarStyle true) }}
-    {{- $ScrollStyle := (resources.Get "css/includes/scroll-bar.css") }}
-    {{- $includes = (append $ScrollStyle $includes) }}
-{{- end }}
 
 {{- $includes_all := $includes | resources.Concat "assets/css/includes.css" }}
 

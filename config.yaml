@@ -1,6 +1,6 @@
 baseURL: "https://ksorok.in"
 languageCode: "en-us"
-title: "Kostiantyn Sorokin"
+title: "ksorok.in — Code, Life & Things I Enjoy"
 theme: ["PaperMod"]
 
 markup:
@@ -33,8 +33,8 @@ params:
     text: "ksorok.in"
   env: "production"
   productionURL: "https://ksorok.in/"
-  defaultTheme: "dark"
-  disableThemeToggle: true
+  defaultTheme: "light"
+  disableThemeToggle: false
   ShowRssButtonInSectionTermList: true
   ShowReadingTime: true
   ShowPostNavLinks: true
@@ -45,7 +45,7 @@ params:
   ShowToc: false
   hideFooter: false
   hideSummary: false
-  description: A personal blog about my projects, the tools I use, what inspires me, and the things I enjoy creating – a journey from ideas to launch..
+  description: A personal blog by Kostiantyn Sorokin — dev logs, app builds, tech reviews, and things that inspire me day to day.
 
   assets:
     customCSS:
@@ -56,23 +56,25 @@ params:
     umamiScriptUrl: "https://analytics.umami.is/script.js"
 
   homeInfoParams:
-    Title: '<code>[~/blog]$<span class="cursor"></span></code>'
+    Title: '<span class="home-prompt">[~]$ whoami<span class="cursor"></span></span>'
     Content: |
-      <p>
-        Documenting my journey from building MVPs to launching on Product Hunt.
-        A personal blog about my projects, the tools I use, what
-        inspires me — and the things I enjoy creating.
-        <a href="/about">Read more..
-
-        </a></p>
-
-      <br>
-
-      <ul>
-        <li><a href="https://www.instagram.com/ksorok.in/" target="_blank" rel="noopener noreferrer"><strong>Instagram</strong></a> – Get my latest blog updates and insights.</li>
-        <li><a href="https://www.linkedin.com/in/kirpokik/" target="_blank" rel="noopener noreferrer"><strong>Linkedin</strong></a> – Connect to follow my work.</li>
-        <li>Reach out to me at <a href="mailto:contact@ksorok.in">contact@ksorok.in</a> 📨</li>
-      </ul>
+      <p>This is my personal space where I share what I enjoy, what I discover, what I watch, and what inspires me.
+      I also write about what I build — creating and improving apps has become my hobby, and I love sharing both the results and the process. <a href="/about/" class="home-intro-link group inline-flex items-center gap-1 underline decoration-dashed underline-offset-4">Read more</a></p>
+      <div class="mt-4 flex flex-nowrap items-center gap-1 whitespace-nowrap">
+          <div class="me-2 mb-0 whitespace-nowrap">Social Links:</div>
+          <a href="https://www.instagram.com/ksorok.in/" title="Instagram" aria-label="Instagram" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1" target="_blank" rel="noopener noreferrer">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path><path d="M16.5 7.5l0 .01"></path></svg>
+            <span class="sr-only">Instagram</span>
+          </a>
+          <a href="mailto:contact@ksorok.in" title="Email" aria-label="Email" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="m3 7 9 6 9-6"></path></svg>
+            <span class="sr-only">Email</span>
+          </a>
+          <a href="https://www.linkedin.com/in/kirpokik/" title="LinkedIn" aria-label="LinkedIn" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1" target="_blank" rel="noopener noreferrer">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 1 0-4 0"></path><path d="M3 7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"></path></svg>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+      </div>
 
 mainSections:
   - posts
@@ -90,17 +92,17 @@ menu:
     - name: "About"
       url: "/about/"
       weight: 1
-    - name: "Archive"
-      url: "/archives/"
-      weight: 2
     - name: "Blog"
       url: "/posts/"
+      weight: 2
+    - name: "Notes"
+      url: "/notes/"
       weight: 3
-    - name: "Dev Log"
-      url: "/build-log/"
+    - name: "Dev"
+      url: "/dev/"
       weight: 4
-    - name: "Projects"
-      url: "/projects/"
+    - name: "Tags"
+      url: "/tags/"
       weight: 5
     - name: "Search"
       url: "/search/"

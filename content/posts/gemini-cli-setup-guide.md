@@ -8,6 +8,8 @@ ShowToc: true
 showBreadcrumbs: true
 comments: true
 share_image: "/images/gemini-cli-setup-cover.png"
+featured: true
+weight: 2
 ---
 
 ## The Problem: When "Easy Install" Isn't Easy
@@ -30,7 +32,7 @@ winget install OpenJS.NodeJS
 
 After the installation, it's crucial to restart your terminal. This allows the system to recognize the new `npm` command.
 
-<p align="center"><img src="/images/winget.png" alt="Gemini CLI Logo"></p>
+<p align="center"><img src="/images/winget.png" alt="Installing Node.js via winget on Windows 11"></p>
 
 ## Step 2: Troubleshooting Common NPM Errors
 
@@ -100,7 +102,7 @@ Solution:
     *   Click OK on all windows to close them.
     *   Restart your terminal or your entire computer for the changes to take effect.
 
-<p align="center"><img src="/images/environment-variables.png" alt="Gemini CLI Logo"></p>
+<p align="center"><img src="/images/environment-variables.png" alt="Setting GOOGLE_CLOUD_PROJECT in Windows environment variables"></p>
 
 ## Step 4: Enable the API
 
@@ -128,7 +130,7 @@ Now, you can finally run the login command without any issues:
 gemini auth login
 ```
 
-<p align="center"><img src="/images/gemini-cli.png" alt="Gemini CLI Logo"></p>
+<p align="center"><img src="/images/gemini-cli.png" alt="Gemini CLI authentication prompt and terminal setup"></p>
 
 This will open a browser window for you to log in with your Google account. After that, your Gemini CLI will be fully configured and ready to use.
 

@@ -6,6 +6,8 @@ tags: ["django", "framework", "project", "mvp", "web development"]
 categories: ["build-log", "project-journal"]
 category: "Code Notes"
 comments: true
+aliases:
+  - /build-log/project-journal/how-i-build-mvps/
 ---
 
 ## ✍️ Where My MVP Ideas Come From

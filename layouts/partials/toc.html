@@ -1,12 +1,8 @@
 {{ if .TableOfContents }}
 <div class="toc">
-  <details open>
-    <summary accesskey="c" title="(Alt + C)">
-      <span class="details">On this page</span>
-    </summary>
-    <div class="inner">
-      {{ .TableOfContents }}
-    </div>
-  </details>
+  <h2 id="table-of-contents" class="group">Table of contents<a class="heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100" href="#table-of-contents"><span aria-hidden="true">#</span></a></h2>
+  <div class="inner">
+    {{ .TableOfContents }}
+  </div>
 </div>
 {{ end }}

@@ -1,4 +1,8 @@
 ---
-title: "Building Pidchas: My Startup Journey"
+title: "Dev"
+url: "/dev/"
+aliases:
+  - "/build-log/my-road-to-ph/"
 ---
-A journal of everything I’m doing to prepare and launch on Product Hunt
+My projects. My mistakes. My progress.
+A solo founder building in public. This is where I share what I build, break, and improve — step by step.

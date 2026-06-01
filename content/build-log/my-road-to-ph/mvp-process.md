@@ -7,6 +7,8 @@ category: "Pidchas Startup "
 type: build-log
 draft: false
 comments: true
+aliases:
+  - /build-log/my-road-to-ph/mvp-process/
 ---
 The idea for **Pidchas** came from observing how long-distance shipping delays affect small and mid-size sellers.
 

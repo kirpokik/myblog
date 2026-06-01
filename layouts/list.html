@@ -4,38 +4,23 @@
 {{- partial "index_profile.html" . }}
 {{- else }} {{/* if not profileMode */}}
 
-{{- if not .IsHome | and .Title }}
-<header class="page-header">
-  {{- partial "breadcrumbs.html" . }}
-  <h1>
-    {{ .Title }}
-    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
-    {{- with .OutputFormats.Get "rss" }}
-    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" height="23">
-        <path d="M4 11a9 9 0 0 1 9 9" />
-        <path d="M4 4a16 16 0 0 1 16 16" />
-        <circle cx="5" cy="19" r="1" />
-      </svg>
-    </a>
-    {{- end }}
-    {{- end }}
-  </h1>
-  {{- if .Description }}
-  <div class="post-description">
-    {{ .Description | markdownify }}
-  </div>
-  {{- end }}
-</header>
-{{- end }}
-
 {{- if .Content }}
+{{- if eq .RelPermalink "/dev/" }}
+<article class="first-entry home-info">
+  <header class="entry-header">
+    <h1><span class="home-prompt">[~/dev]$ ls -la<span class="cursor"></span></span></h1>
+  </header>
+  <div class="entry-content">
+    {{ .Content | markdownify }}
+  </div>
+</article>
+{{- else }}
 <div class="post-content md-content">
   {{- if not (.Param "disableAnchoredHeadings") }}
   {{- partial "anchored_headings.html" .Content -}}
   {{- else }}{{ .Content }}{{ end }}
 </div>
+{{- end }}
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections }}
@@ -45,7 +30,38 @@
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
 {{- end }}
 
-{{- $paginator := .Paginate $pages }}
+{{- $pageSize := 5 }}
+{{- if and (eq .Kind "section") (or (eq .Section "posts") (eq .RelPermalink "/dev/")) }}
+  {{- $pageSize = 10 }}
+{{- end }}
+{{- $paginator := .Paginate $pages $pageSize }}
+
+{{- if and (not .IsHome) .Title (ne .RelPermalink "/dev/") }}
+<nav class="app-layout mt-4 mb-1" aria-label="breadcrumb">
+  <ul class="font-light">
+    <li>
+      <a href="{{ "/" | relLangURL }}" class="opacity-80">Home</a>
+      <span aria-hidden="true" class="opacity-80">»</span>
+    </li>
+    {{- if eq .Kind "term" }}
+    <li>
+      <a href="{{ "/tags/" | relLangURL }}" class="opacity-80">Tags</a>
+      <span aria-hidden="true" class="opacity-80">»</span>
+    </li>
+    <li>
+      <span class="opacity-75" aria-current="page">#{{ lower .Title }}</span>
+    </li>
+    {{- else }}
+    <li>
+      <span class="capitalize opacity-75" aria-current="page">{{ .Title }}{{ if or (eq .Section "posts") (gt $paginator.PageNumber 1) }} (Page {{ $paginator.PageNumber }}){{ end }}</span>
+    </li>
+    {{- end }}
+  </ul>
+</nav>
+<header class="page-header">
+  <h1>{{ if eq .Kind "term" }}#{{ lower .Title }}{{ else }}{{ .Title }}{{ end }}</h1>
+</header>
+{{- end }}
 
 {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
 {{- partial "home_info.html" . }}
@@ -57,7 +73,7 @@
   {{- if gt (len $featuredPages) 0 }}
   <section class="featured-posts compact-posts">
     <header class="page-header compact-posts-header">
-      <h2>Featured</h2>
+      <h2>$ cat featured.md</h2>
     </header>
     <ul class="compact-posts-list">
       {{- range $featuredPages }}
@@ -84,11 +100,13 @@
   </section>
   {{- end }}
 
-  {{- $recentPages := first 3 (where $paginator.Pages "Params.featured" "!=" true) -}}
+  {{- $recentPool := where site.RegularPages "Section" "posts" -}}
+  {{- $recentPool = where $recentPool "Params.featured" "!=" true -}}
+  {{- $recentPages := first 3 ($recentPool.ByDate.Reverse) -}}
   {{- if gt (len $recentPages) 0 }}
-  <section class="recent-posts compact-posts">
+  <section class="compact-posts home-recent-posts">
     <header class="page-header compact-posts-header">
-      <h2>Recent Posts</h2>
+      <h2>$ ls -t posts/</h2>
     </header>
     <ul class="compact-posts-list">
       {{- range $recentPages }}
@@ -115,12 +133,13 @@
   </section>
   {{- end }}
 
-  {{- with site.GetPage "/build-log/project-journal" }}
+  {{- $notesSection := or (site.GetPage "/notes") (site.GetPage "/build-log/project-journal") -}}
+  {{- with $notesSection }}
   {{- $notesPages := first 1 (.RegularPages.ByDate.Reverse) -}}
   {{- if gt (len $notesPages) 0 }}
   <section class="notes-posts">
     <header class="page-header compact-posts-header">
-      <h2><a href="{{ .RelPermalink }}">Notes</a></h2>
+      <h2>$ cat notes.md</h2>
     </header>
     <ul class="notes-posts-list" role="list">
       {{- range $notesPages }}
@@ -130,7 +149,7 @@
           <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "02/01/06, 15:04" }}</time>
           <div class="notes-post-excerpt">
             <p>{{ with .Description }}{{ . | plainify | htmlUnescape }}{{ else }}{{ .Summary | plainify | htmlUnescape }}{{ end }}...</p>
-            <a class="notes-post-read-more" href="{{ .RelPermalink }}">Read more</a>
+            <a href="{{ .RelPermalink }}" class="home-intro-link group inline-flex items-center gap-1 mt-2 underline decoration-dashed underline-offset-4">Read more</a>
           </div>
         </article>
       </li>
@@ -141,6 +160,13 @@
   {{- end }}
 {{- else }}
   {{- $term := .Data.Term }}
+  {{- if eq .RelPermalink "/dev/" }}
+  <section class="recent-posts compact-posts">
+    <header class="page-header compact-posts-header">
+      <h2>$ cat dev.md</h2>
+    </header>
+  </section>
+  {{- end }}
   {{- range $index, $page := $paginator.Pages }}
 
   {{- $class := "post-entry" }}
