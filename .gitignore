@@ -40,8 +40,10 @@ Thumbs.db
 start-*.bat
 kiro.bat
 docs/
-fonts/
 run*_logs/
+
+# Keep site fonts
+!static/fonts/
 run*_logs.zip
 zz.png
 current-*.png
