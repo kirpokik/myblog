@@ -1,0 +1,78 @@
+<header class="header">
+  <div class="header-nav astro-header-nav">
+    {{- $label_text := (site.Params.label.text | default site.Title) }}
+    {{- $currentPage := . }}
+    {{- $pageURL := $currentPage.RelPermalink | relLangURL }}
+
+    {{- if site.Title }}
+    <a href="{{ "" | relLangURL }}" class="astro-brand" accesskey="h" title="{{ $label_text }} (Alt + H)">{{- $label_text -}}</a>
+    {{- end }}
+
+    <nav id="nav-menu" class="astro-nav-menu" aria-label="Main navigation">
+      <button id="menu-btn" class="astro-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu-items" data-label-open="Open menu" data-label-close="Close menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden" viewBox="0 0 24 24" id="close-icon">
+          <path stroke="none" d="M0 0h24v24H0z"></path>
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="menu-icon" viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"></path>
+          <path d="M4 6h16M7 12h13M10 18h10"></path>
+        </svg>
+      </button>
+
+      <ul id="menu-items" class="astro-menu-items">
+        <li><a href="{{ "/posts/" | relLangURL }}" {{- if or (eq (("/posts/" | relLangURL)) $pageURL) (eq .Section "posts") }} class="active active-nav" {{- end }}>Posts</a></li>
+        <li><a href="{{ "/notes/" | relLangURL }}" {{- if eq (("/notes/" | relLangURL)) $pageURL }} class="active active-nav" {{- end }}>Notes</a></li>
+        <li><a href="{{ "/dev/" | relLangURL }}" {{- if eq (("/dev/" | relLangURL)) $pageURL }} class="active active-nav" {{- end }}>Dev</a></li>
+        <li><a href="{{ "/about/" | relLangURL }}" {{- if eq (("/about/" | relLangURL)) $pageURL }} class="active active-nav" {{- end }}>About</a></li>
+        <li class="menu-icon-item">
+          <a href="{{ "/tags/" | relLangURL }}" title="Tags" aria-label="Tags" class="astro-icon-link">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke="none" d="M0 0h24v24H0z"></path>
+              <path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="menu-icon-item">
+          <a href="{{ "/search/" | relLangURL }}" title="Search" accesskey="/" aria-label="Search" class="astro-icon-link">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke="none" d="M0 0h24v24H0z"></path>
+              <path d="M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0M21 21l-6-6"></path>
+            </svg>
+          </a>
+        </li>
+        {{- if (not site.Params.disableThemeToggle) }}
+        <li class="menu-icon-item">
+          <button id="theme-toggle" class="theme-toggle theme-btn" title="Toggle theme" aria-label="light" aria-live="polite">
+            <svg class="theme-icon theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z"></path>
+              <path d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"></path>
+            </svg>
+            <svg class="theme-icon theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z"></path>
+              <path d="M14.828 14.828a4 4 0 1 0-5.656-5.656 4 4 0 0 0 5.656 5.656M6.343 17.657l-1.414 1.414M6.343 6.343 4.929 4.929M17.657 6.343l1.414-1.414M17.657 17.657l1.414 1.414M4 12H2M12 4V2M20 12h2M12 20v2"></path>
+            </svg>
+          </button>
+        </li>
+        {{- end }}
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+(() => {
+  const menuBtn = document.getElementById("menu-btn");
+  const menuItems = document.getElementById("menu-items");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+  if (!menuBtn || !menuItems || !menuIcon || !closeIcon) return;
+  menuBtn.addEventListener("click", () => {
+    const expanded = menuBtn.getAttribute("aria-expanded") === "true";
+    menuBtn.setAttribute("aria-expanded", String(!expanded));
+    menuBtn.setAttribute("aria-label", expanded ? menuBtn.dataset.labelOpen : menuBtn.dataset.labelClose);
+    menuItems.classList.toggle("is-open", !expanded);
+    menuIcon.classList.toggle("hidden", !expanded);
+    closeIcon.classList.toggle("hidden", expanded);
+  });
+})();
+</script>

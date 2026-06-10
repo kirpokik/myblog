@@ -3,3 +3,45 @@ resources/
 node_modules/
 .DS_Store
 *.log
+
+# Screenshots and images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.svg
+*.ico
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# OS files
+Thumbs.db
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Claude / AI
+.claude/
+*.bat
+*.ps1
+start-*.bat
+kiro.bat
+docs/
+fonts/
+run*_logs/
+run*_logs.zip
+zz.png
+current-*.png
