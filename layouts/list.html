@@ -167,6 +167,7 @@
     </header>
   </section>
   {{- end }}
+  {{- $isCompactList := or (eq $.Section "posts") (eq $.RelPermalink "/notes/") (eq $.RelPermalink "/dev/") }}
   {{- range $index, $page := $paginator.Pages }}
 
   {{- $class := "post-entry" }}
@@ -178,6 +179,24 @@
   {{- $class = "post-entry tag-entry" }}
   {{- end }}
 
+  {{- if $isCompactList }}
+  <article class="compact-post-item">
+    <div class="compact-post-main">
+      <div class="compact-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+      <div class="compact-post-meta">
+        <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+        <span>·</span>
+        <span>{{ .WordCount }} words</span>
+        {{- with .Params.tags }}
+        {{- with index . 0 }}
+        <span>·</span>
+        <span class="compact-post-tag">#{{ . }}</span>
+        {{- end }}
+        {{- end }}
+      </div>
+    </div>
+  </article>
+  {{- else }}
   <article class="{{ $class }}">
     {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
     {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
@@ -206,6 +225,7 @@
     {{- end }}
     <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .RelPermalink }}"></a>
   </article>
+  {{- end }}
   {{- end }}
 {{- end }}
 
