@@ -14,6 +14,15 @@
     {{ .Content | markdownify }}
   </div>
 </article>
+{{- else if eq .RelPermalink "/notes/" }}
+<article class="first-entry home-info">
+  <header class="entry-header">
+    <h1><span class="home-prompt">[~/notes]$ ls -la<span class="cursor"></span></span></h1>
+  </header>
+  <div class="entry-content">
+    {{ .Content | markdownify }}
+  </div>
+</article>
 {{- else }}
 <div class="post-content md-content">
   {{- if not (.Param "disableAnchoredHeadings") }}
@@ -36,7 +45,7 @@
 {{- end }}
 {{- $paginator := .Paginate $pages $pageSize }}
 
-{{- if and (not .IsHome) .Title (ne .RelPermalink "/dev/") }}
+{{- if and (not .IsHome) .Title (ne .RelPermalink "/dev/") (ne .RelPermalink "/notes/") }}
 <nav class="app-layout mt-4 mb-1" aria-label="breadcrumb">
   <ul class="font-light">
     <li>
@@ -164,6 +173,12 @@
   <section class="recent-posts compact-posts">
     <header class="page-header compact-posts-header">
       <h2>$ cat dev.md</h2>
+    </header>
+  </section>
+  {{- else if eq .RelPermalink "/notes/" }}
+  <section class="recent-posts compact-posts">
+    <header class="page-header compact-posts-header">
+      <h2>$ cat notes.md</h2>
     </header>
   </section>
   {{- end }}

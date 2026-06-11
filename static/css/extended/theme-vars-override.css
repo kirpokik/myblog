@@ -921,6 +921,15 @@ code {
 :root[data-theme="dark"] .compact-post-item:focus-visible {
   outline: 2px solid color-mix(in srgb, #fff 35%, transparent);
 }
+
+.list .compact-post-item {
+  margin-bottom: 16px;
+}
+
+.list .compact-post-item:last-child {
+  margin-bottom: 0;
+}
+
 .compact-post-main {
   min-width: 0;
   flex: 1;
