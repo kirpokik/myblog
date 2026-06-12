@@ -1,8 +1,26 @@
 {{- define "main" }}
 
 <article class="post-single">
+  {{- if eq .RelPermalink "/about/" }}
+  <article class="first-entry home-info">
+    <header class="entry-header">
+      <h1><span class="home-prompt">[~/about]$<span class="cursor"></span></span></h1>
+    </header>
+  </article>
+
+  {{- if .Content }}
+  <div class="post-content md-content about-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+  {{- else }}
   <header class="post-header">
-    {{ partial "breadcrumbs.html" . }}
+    <a class="post-back-link" href="/posts/" aria-label="Back to posts">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="post-back-icon inline-block size-6 rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"></path><path d="m15 6-6 6 6 6"></path></svg>
+      <span>Back to posts</span>
+    </a>
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
       {{- if .Draft }}
@@ -14,17 +32,20 @@
       </span>
       {{- end }}
     </h1>
-    {{- if .Description }}
-    <div class="post-description">
-      {{ .Description }}
-    </div>
-    {{- end }}
     {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
-      {{- partial "post_meta.html" . -}}
+    <div class="post-meta post-meta-inline">
+      <div class="post-meta-primary">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM16 3v4M8 3v4M4 11h16M7 14h.013M10.01 14h.005M13.01 14h.005M16.015 14h.005M13.015 17h.005M7.01 17h.005M10.01 17h.005"></path></svg>
+        {{- partial "post_meta.html" . -}}
+      </div>
       {{- partial "translation_list.html" . -}}
       {{- partial "edit_post.html" . -}}
       {{- partial "post_canonical.html" . -}}
+    </div>
+    {{- end }}
+    {{- if .Description }}
+    <div class="post-description post-description-divider">
+      {{ .Description }}
     </div>
     {{- end }}
   </header>
@@ -40,6 +61,7 @@
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
   </div>
+  {{- end }}
   {{- end }}
 
   {{- partial "extend_post_content.html" . }}

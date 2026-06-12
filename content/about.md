@@ -5,9 +5,7 @@ hideMeta: true
 comments: false
 ---
 
-<img src="/images/avatar.jpg" alt="My photo" width="100" style="float: right; margin: 10px; border-radius: 11px;" />
-
-Hi there! My name is Kostinatyn Sorokin.
+Hi there! My name is Kostiantyn Sorokin.
 This website is my personal blog where I document my journey in building MVP applications for future startups, share thoughts about my hobbies, and reflect on life in general.
 
 You can find all posts in the [Archive](/archives), or use [Search](/search) and [Tags](/tags) to explore content by topic.

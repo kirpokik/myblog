@@ -10,10 +10,6 @@ featured: true
 weight: 1
 ---
 
-Streaming videos directly from your PC to your Android TV box or Smart TV can be easy and efficient when using VLC Media Player and a shared folder on your local network. This guide explains how to set it up step-by-step — no internet required.
-
----
-
 ### What You Need
 
 - A Windows PC with your video files.

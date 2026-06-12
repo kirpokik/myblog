@@ -4,11 +4,11 @@
 {{- partial "index_profile.html" . }}
 {{- else }} {{/* if not profileMode */}}
 
-{{- if .Content }}
+{{- if or .Content (eq .RelPermalink "/posts/") (eq .RelPermalink "/notes/") }}
 {{- if eq .RelPermalink "/dev/" }}
 <article class="first-entry home-info">
   <header class="entry-header">
-    <h1><span class="home-prompt">[~/dev]$ ls -la<span class="cursor"></span></span></h1>
+    <h1><span class="home-prompt">[~/dev]$<span class="cursor"></span></span></h1>
   </header>
   <div class="entry-content">
     {{ .Content | markdownify }}
@@ -17,10 +17,19 @@
 {{- else if eq .RelPermalink "/notes/" }}
 <article class="first-entry home-info">
   <header class="entry-header">
-    <h1><span class="home-prompt">[~/notes]$ ls -la<span class="cursor"></span></span></h1>
+    <h1><span class="home-prompt">[~/notes]$<span class="cursor"></span></span></h1>
   </header>
   <div class="entry-content">
-    {{ .Content | markdownify }}
+    Personal notes on things I enjoy, watch, and want to remember — from useful guides and places to YouTube channels worth sharing.
+  </div>
+</article>
+{{- else if eq .RelPermalink "/posts/" }}
+<article class="first-entry home-info">
+  <header class="entry-header">
+    <h1><span class="home-prompt">[~/posts]$<span class="cursor"></span></span></h1>
+  </header>
+  <div class="entry-content">
+    Blog posts, reviews, guides, app setups, practical fixes, and useful things worth sharing after trying them for real.
   </div>
 </article>
 {{- else }}
@@ -34,7 +43,11 @@
 
 {{- $pages := union .RegularPages .Sections }}
 
-{{- if .IsHome }}
+{{- if eq .RelPermalink "/notes/" }}
+  {{- with site.GetPage "/build-log/project-journal" }}
+    {{- $pages = .RegularPages }}
+  {{- end }}
+{{- else if .IsHome }}
 {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
 {{- end }}
@@ -45,7 +58,7 @@
 {{- end }}
 {{- $paginator := .Paginate $pages $pageSize }}
 
-{{- if and (not .IsHome) .Title (ne .RelPermalink "/dev/") (ne .RelPermalink "/notes/") }}
+{{- if and (not .IsHome) .Title (ne .RelPermalink "/dev/") (ne .RelPermalink "/notes/") (ne .RelPermalink "/posts/") }}
 <nav class="app-layout mt-4 mb-1" aria-label="breadcrumb">
   <ul class="font-light">
     <li>
@@ -92,8 +105,6 @@
             <div class="compact-post-title">{{ .Title }}</div>
             <div class="compact-post-meta">
               <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-              <span>·</span>
-              <span>{{ .WordCount }} words</span>
               {{- with .Params.tags }}
               {{- with index . 0 }}
               <span>·</span>
@@ -115,7 +126,7 @@
   {{- if gt (len $recentPages) 0 }}
   <section class="compact-posts home-recent-posts">
     <header class="page-header compact-posts-header">
-      <h2>$ ls -t posts/</h2>
+      <h2>$ cat posts.md</h2>
     </header>
     <ul class="compact-posts-list">
       {{- range $recentPages }}
@@ -125,8 +136,6 @@
             <div class="compact-post-title">{{ .Title }}</div>
             <div class="compact-post-meta">
               <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-              <span>·</span>
-              <span>{{ .WordCount }} words</span>
               {{- with .Params.tags }}
               {{- with index . 0 }}
               <span>·</span>
@@ -153,20 +162,21 @@
     <ul class="notes-posts-list" role="list">
       {{- range $notesPages }}
       <li>
-        <article class="notes-post-item" data-pagefind-body="false">
-          <h3 class="notes-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <a class="notes-post-item" href="{{ .RelPermalink }}" data-pagefind-body="false">
+          <h3 class="notes-post-title">{{ .Title }}</h3>
           <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "02/01/06, 15:04" }}</time>
           <div class="notes-post-excerpt">
             <p>{{ with .Description }}{{ . | plainify | htmlUnescape }}{{ else }}{{ .Summary | plainify | htmlUnescape }}{{ end }}...</p>
-            <a href="{{ .RelPermalink }}" class="home-intro-link group inline-flex items-center gap-1 mt-2 underline decoration-dashed underline-offset-4">Read more</a>
+            <span class="home-intro-link group inline-flex items-center gap-1 mt-2 underline decoration-dashed underline-offset-4">Read more</span>
           </div>
-        </article>
+        </a>
       </li>
       {{- end }}
     </ul>
   </section>
   {{- end }}
   {{- end }}
+
 {{- else }}
   {{- $term := .Data.Term }}
   {{- if eq .RelPermalink "/dev/" }}
@@ -179,6 +189,12 @@
   <section class="recent-posts compact-posts">
     <header class="page-header compact-posts-header">
       <h2>$ cat notes.md</h2>
+    </header>
+  </section>
+  {{- else if eq .RelPermalink "/posts/" }}
+  <section class="recent-posts compact-posts">
+    <header class="page-header compact-posts-header">
+      <h2>$ cat posts.md</h2>
     </header>
   </section>
   {{- end }}
@@ -195,13 +211,11 @@
   {{- end }}
 
   {{- if $isCompactList }}
-  <article class="compact-post-item">
+  <a class="compact-post-item" href="{{ .RelPermalink }}" aria-label="post link to {{ .Title | plainify }}">
     <div class="compact-post-main">
-      <div class="compact-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+      <div class="compact-post-title">{{ .Title }}</div>
       <div class="compact-post-meta">
         <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-        <span>·</span>
-        <span>{{ .WordCount }} words</span>
         {{- with .Params.tags }}
         {{- with index . 0 }}
         <span>·</span>
@@ -210,7 +224,7 @@
         {{- end }}
       </div>
     </div>
-  </article>
+  </a>
   {{- else }}
   <article class="{{ $class }}">
     {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}

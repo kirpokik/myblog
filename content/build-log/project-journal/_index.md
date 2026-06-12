@@ -4,4 +4,4 @@ url = "/notes/"
 aliases = ["/build-log/project-journal/"]
 +++
 
-Raw notes on coding, tools, and workflows I use daily. Short thoughts that don't need a full post but are worth writing down and sharing.
+Personal notes on things I enjoy, watch, and want to remember — from useful guides and places to YouTube channels worth sharing.

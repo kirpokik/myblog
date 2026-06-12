@@ -60,7 +60,7 @@ params:
     Content: |
       <p>This is my personal space where I share what I enjoy, what I discover, what I watch, and what inspires me.
       I also write about what I build — creating and improving apps has become my hobby, and I love sharing both the results and the process. <a href="/about/" class="home-intro-link group inline-flex items-center gap-1 underline decoration-dashed underline-offset-4">Read more</a></p>
-      <div class="mt-4 flex flex-nowrap items-center gap-1 whitespace-nowrap">
+      <div class="flex flex-nowrap items-center gap-1 whitespace-nowrap">
           <div class="me-2 mb-0 whitespace-nowrap">Social Links:</div>
           <a href="https://www.instagram.com/ksorok.in/" title="Instagram" aria-label="Instagram" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1" target="_blank" rel="noopener noreferrer">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path><path d="M16.5 7.5l0 .01"></path></svg>
