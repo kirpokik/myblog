@@ -32,6 +32,38 @@
 }
 
 @font-face {
+  font-family: "Google Sans Code";
+  src: url("/fonts/GoogleSansCode-Semibold.woff") format("woff"), url("/fonts/GoogleSansCode-Semibold.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Google Sans Code";
+  src: url("/fonts/GoogleSansCode-SemiboldItalic.woff") format("woff"), url("/fonts/GoogleSansCode-SemiboldItalic.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Google Sans Code";
+  src: url("/fonts/GoogleSansCode-Bold.woff") format("woff"), url("/fonts/GoogleSansCode-Bold.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Google Sans Code";
+  src: url("/fonts/GoogleSansCode-BoldItalic.woff") format("woff"), url("/fonts/GoogleSansCode-BoldItalic.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
   font-family: "Google Sans Code fallback: Courier New";
   src: local("Courier New");
   font-display: swap;
@@ -507,7 +539,7 @@ samp {
   align-items: center;
   gap: 2px;
   font-size: clamp(34px, 5.2vw, 46px);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.12;
 }
@@ -884,7 +916,7 @@ code {
 .notes-posts .page-header h2 {
   font-size: 22px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 22px;
 }
 
 :root[data-theme="dark"] .featured-posts .page-header h2,

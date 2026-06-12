@@ -17,9 +17,18 @@
   {{- end }}
   {{- else }}
   <header class="post-header">
-    <a class="post-back-link" href="/posts/" aria-label="Back to posts">
+    {{- $backHref := "/posts/" -}}
+    {{- $backLabel := "Back to posts" -}}
+    {{- if in .RelPermalink "/build-log/project-journal/" -}}
+      {{- $backHref = "/notes/" -}}
+      {{- $backLabel = "Back to notes" -}}
+    {{- else if in .RelPermalink "/build-log/my-road-to-ph/" -}}
+      {{- $backHref = "/dev/" -}}
+      {{- $backLabel = "Back to dev" -}}
+    {{- end -}}
+    <a class="post-back-link" href="{{ $backHref }}" aria-label="{{ $backLabel }}">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="post-back-icon inline-block size-6 rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"></path><path d="m15 6-6 6 6 6"></path></svg>
-      <span>Back to posts</span>
+      <span>{{ $backLabel }}</span>
     </a>
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
