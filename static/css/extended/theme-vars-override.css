@@ -223,6 +223,21 @@ body {
   }
 }
 
+@media (max-width: 39.99rem) {
+  .astro-header-nav {
+    align-items: flex-start;
+    min-height: 73px;
+    padding-block: 1rem;
+  }
+
+  .astro-brand {
+    position: absolute;
+    top: 1rem;
+    left: var(--app-container-pad);
+    padding-block: 4px;
+  }
+}
+
 .astro-brand {
   padding-block: 4px;
   font-size: 1.25rem;
@@ -233,6 +248,7 @@ body {
 
 @media (min-width: 40rem) {
   .astro-brand {
+    position: static;
     margin-block: auto;
     font-size: 1.5rem;
     line-height: 1;
@@ -244,6 +260,13 @@ body {
   width: 100%;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 39.99rem) {
+  .astro-nav-menu {
+    width: 100%;
+    margin-inline-start: 0;
+  }
 }
 
 @media (min-width: 40rem) {
@@ -282,6 +305,13 @@ body {
 
 .astro-menu-items.is-open {
   display: grid;
+}
+
+@media (max-width: 39.99rem) {
+  .astro-menu-items {
+    width: 11rem;
+    margin: 1rem auto 0;
+  }
 }
 
 @media (min-width: 40rem) {

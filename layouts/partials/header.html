@@ -25,14 +25,7 @@
         <li><a href="{{ "/notes/" | relLangURL }}" {{- if eq (("/notes/" | relLangURL)) $pageURL }} class="active active-nav" {{- end }}>Notes</a></li>
         <li><a href="{{ "/dev/" | relLangURL }}" {{- if eq (("/dev/" | relLangURL)) $pageURL }} class="active active-nav" {{- end }}>Dev</a></li>
         <li><a href="{{ "/about/" | relLangURL }}" {{- if eq (("/about/" | relLangURL)) $pageURL }} class="active active-nav" {{- end }}>About</a></li>
-        <li class="menu-icon-item">
-          <a href="{{ "/tags/" | relLangURL }}" title="Tags" aria-label="Tags" class="astro-icon-link">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke="none" d="M0 0h24v24H0z"></path>
-              <path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4"></path>
-            </svg>
-          </a>
-        </li>
+        <li><a href="{{ "/tags/" | relLangURL }}" {{- if eq (("/tags/" | relLangURL)) $pageURL }} class="active active-nav" {{- end }}>Tags</a></li>
         <li class="menu-icon-item">
           <a href="{{ "/search/" | relLangURL }}" title="Search" accesskey="/" aria-label="Search" class="astro-icon-link">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
