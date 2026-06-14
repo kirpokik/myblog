@@ -26,7 +26,6 @@ outputs:
     - HTML
     - RSS
     - JSON
-    - sitemap
 
 params:
   label:
