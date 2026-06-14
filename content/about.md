@@ -1,5 +1,7 @@
 ---
 title: "About Me"
+description: "About Kostiantyn Sorokin — indie app dev and MVP builder sharing notes on side projects, tech, retro gaming, and life."
+og_type: "website"
 layout: "page"
 hideMeta: true
 comments: false

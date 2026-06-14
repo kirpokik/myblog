@@ -42,8 +42,9 @@ kiro.bat
 docs/
 run*_logs/
 
-# Keep site fonts
+# Keep site assets
 !static/fonts/
+!static/images/og-default.png
 run*_logs.zip
 zz.png
 current-*.png

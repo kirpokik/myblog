@@ -21,6 +21,9 @@
 <meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- with site.Params.description }}{{ . }}{{- end }}{{- end -}}">
 <meta name="author" content="Kostiantyn Sorokin">
 <link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
+<link rel="alternate" hreflang="en" href="{{ .Permalink }}">
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{- $defaultImage := "images/og-default.png" | absURL -}}
 
 {{- if .IsPage }}
     {{- $image := "" -}}
@@ -29,10 +32,10 @@
     {{- else if .Params.cover.image -}}
         {{- $image = .Params.cover.image | absURL -}}
     {{- else -}}
-        {{- $image = "images/gemini-cli-setup-cover.png" | absURL -}}
+        {{- $image = $defaultImage -}}
     {{- end -}}
 
-    <meta property="og:type" content="article">
+    <meta property="og:type" content="{{ .Params.og_type | default "article" }}">
     <meta property="og:title" content="{{ .Title | plainify }}">
     <meta property="og:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
@@ -44,6 +47,23 @@
     <meta name="twitter:description" content="{{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}">
     <meta name="twitter:image" content="{{ $image }}">
 
+    {{- if eq .Params.og_type "website" }}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kostiantyn Sorokin",
+      "url": "{{ .Permalink }}",
+      "description": "{{ with .Description }}{{ . | plainify }}{{ else }}{{ site.Params.description }}{{ end }}",
+      "image": "{{ "images/avatar.jpg" | absURL }}",
+      "sameAs": [
+        "https://www.instagram.com/ksorok.in/",
+        "https://www.linkedin.com/in/kirpokik/",
+        "https://github.com/kirpokik"
+      ]
+    }
+    </script>
+    {{- else }}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -71,6 +91,7 @@
       "image": "{{ $image }}"
     }
     </script>
+    {{- end }}
 {{- else }}
     <meta property="og:url" content="{{ site.BaseURL }}">
     <meta property="og:site_name" content="{{ site.Title }}">
@@ -78,12 +99,12 @@
     <meta property="og:description" content="{{ site.Params.description }}">
     <meta property="og:locale" content="en-us">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="{{ "images/gemini-cli-setup-cover.png" | absURL }}">
+    <meta property="og:image" content="{{ $defaultImage }}">
 
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ site.Title }}">
     <meta name="twitter:description" content="{{ site.Params.description }}">
-    <meta name="twitter:image" content="{{ "images/gemini-cli-setup-cover.png" | absURL }}">
+    <meta name="twitter:image" content="{{ $defaultImage }}">
 
     <script type="application/ld+json">
     {

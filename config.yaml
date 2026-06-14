@@ -45,7 +45,7 @@ params:
   ShowToc: false
   hideFooter: false
   hideSummary: false
-  description: A personal blog by Kostiantyn Sorokin — dev logs, app builds, tech reviews, and things that inspire me day to day.
+  description: Personal blog by Kostiantyn Sorokin — indie app dev, MVP builder, retro gaming, and real notes from building startups and side projects.
 
   assets:
     customCSS:
