@@ -57,8 +57,7 @@ params:
   homeInfoParams:
     Title: '<span class="home-prompt">[~]$ whoami<span class="cursor"></span></span>'
     Content: |
-      <p>This is my personal space where I share what I enjoy, what I discover, what I watch, and what inspires me.
-      I also write about what I build — creating and improving apps has become my hobby, and I love sharing both the results and the process. <a href="/about/" class="home-intro-link group inline-flex items-center gap-1 underline decoration-dashed underline-offset-4">Read more</a></p>
+      <p>This is my personal space — no strict niche, just things that catch my attention. Apps I'm building, gadgets I picked up, movies I watched, stuff I figured out the hard way. If that sounds like your kind of content — you're in the right place. <a href="/about/" class="home-intro-link group inline-flex items-center gap-1 underline decoration-dashed underline-offset-4">Read more</a></p>
       <div class="flex flex-nowrap items-center gap-1 whitespace-nowrap">
           <div class="me-2 mb-0 whitespace-nowrap">Social Links:</div>
           <a href="https://www.instagram.com/ksorok.in/" title="Instagram" aria-label="Instagram" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1" target="_blank" rel="noopener noreferrer">
