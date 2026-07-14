@@ -1,5 +1,5 @@
 baseURL: "https://ksorok.in"
-languageCode: "en-us"
+locale: "en-us"
 title: "ksorok.in — Code, Life & Things I Enjoy"
 theme: ["PaperMod"]
 
