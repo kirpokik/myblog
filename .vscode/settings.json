@@ -93,7 +93,7 @@
   "editor.matchBrackets": "never",
   "editor.parameterHints.enabled": false,
   "editor.lightbulb.enabled": "off",
-  "editor.hover.enabled": false,
+  "editor.hover.enabled": "off",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "scm.diffDecorations": "none",
@@ -120,7 +120,7 @@
   "files.autoSave": "afterDelay",
   "update.mode": "none",
   "extensions.ignoreRecommendations": true,
-  "workbench.colorTheme": "poimandres-storm",
+  "workbench.colorTheme": "Abyss",
   "workbench.editor.empty.hint": "hidden",
    // Markdown settings
   "markdown.preview.scrollEditorWithPreview": true,
